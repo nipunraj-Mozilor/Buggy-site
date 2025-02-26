@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- Missing meta description for SEO -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Performance, Accessibility &amp; SEO Test Page</title>
+    <!-- Missing favicon -->
+    <!-- Inline, non-minified CSS (render-blocking) with poor color contrast -->
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+      header {
+        background: #333;
+        color: #222;
+        padding: 20px;
+        text-align: center;
+      }
+      nav ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      nav ul li {
+        display: inline;
+        margin-right: 10px;
+      }
+      main {
+        padding: 20px;
+      }
+      section {
+        margin-bottom: 40px;
+      }
+      footer {
+        background: #333;
+        color: #222;
+        text-align: center;
+        padding: 10px;
+      }
+      a {
+        color: #444;
+      } /* Poor contrast for links */
+      .button {
+        background-color: #444;
+        color: #222;
+        border: none;
+        padding: 10px;
+        cursor: pointer;
+      }
+    </style>
+    <!-- Synchronous JavaScript that blocks rendering -->
+    <script>
+      function heavyComputation() {
+        for (var i = 0; i < 100000000; i++) {
+          // Intentional busy loop to simulate heavy processing
+        }
+      }
+      heavyComputation();
+    </script>
+    <!-- Synchronous external script loaded without defer/async -->
+    <script src="unoptimized-script.js"></script>
+  </head>
+  <body>
+    <header>
+      <h1>Welcome to the Buggy Test Site</h1>
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <!-- Broken link: services.html doesn't exist -->
+          <li><a href="services.html">Services</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <section id="introduction">
+        <h2>Introduction</h2>
+        <p>
+          This is a sample website intentionally built with errors for testing
+          purposes.
+        </p>
+        <!-- Large unoptimized image with proper alt text -->
+        <img
+          src="large-image.jpg"
+          alt="Large Unoptimized Image"
+          width="1200"
+          height="800"
+        />
+        <!-- Online image with missing alt text (accessibility issue) -->
+        <img src="https://via.placeholder.com/300" />
+      </section>
+      <section id="forms">
+        <h2>Forms</h2>
+        <form action="/submit" method="post">
+          <label for="username">Username</label>
+          <input type="text" id="username" name="username" />
+
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" />
+
+          <!-- Submit button missing the type attribute -->
+          <button>Submit</button>
+        </form>
+      </section>
+    </main>
+    <footer>
+      <p>&copy; 2025 Test Website</p>
+      <!-- Broken image link (logo.png might not exist) -->
+      <img src="logo.png" alt="Logo" />
+      <!-- Image missing alt text -->
+      <img src="https://picsum.photos/id/237/200/300" />
+    </footer>
+  </body>
+</html>
