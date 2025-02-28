@@ -52,7 +52,7 @@
       }
     </style>
     <!-- Synchronous JavaScript that blocks rendering -->
-    <script>
+    <script defer>
       function heavyComputation() {
         for (var i = 0; i < 100000000; i++) {
           // Intentional busy loop to simulate heavy processing
@@ -61,7 +61,7 @@
       heavyComputation();
     </script>
     <!-- Synchronous external script loaded without defer/async -->
-    <script src="unoptimized-script.js"></script>
+    <script src="unoptimized-script.js" defer></script>
   </head>
   <body>
     <header>
@@ -84,14 +84,15 @@
           purposes.
         </p>
         <!-- Large unoptimized image with proper alt text -->
-        <img
+        <link rel="preload" href="large-image.jpg" as="image">
+<img
           src="large-image.jpg"
           alt="Large Unoptimized Image"
           width="1200"
           height="800"
         />
         <!-- Online image with missing alt text (accessibility issue) -->
-        <img src="https://via.placeholder.com/300" />
+        <img src="https://via.placeholder.com/300" alt="Placeholder image" />
       </section>
       <section id="forms">
         <h2>Forms</h2>
@@ -110,9 +111,10 @@
     <footer>
       <p>&copy; 2025 Test Website</p>
       <!-- Broken image link (logo.png might not exist) -->
-      <img src="logo.png" alt="Logo" />
+      <link rel="preload" href="logo.png" as="image">
+<img src="logo.png" alt="Logo" />
       <!-- Image missing alt text -->
-      <img src="https://picsum.photos/id/237/200/300" />
+      <img src="https://picsum.photos/id/237/200/300" alt="Random image" />
     </footer>
   </body>
 </html>
