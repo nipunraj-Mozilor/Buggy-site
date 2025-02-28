@@ -53,15 +53,17 @@
     </style>
     <!-- Synchronous JavaScript that blocks rendering -->
     <script>
-      function heavyComputation() {
-        for (var i = 0; i < 100000000; i++) {
-          // Intentional busy loop to simulate heavy processing
+      window.addEventListener('load', function() {
+        function heavyComputation() {
+          for (var i = 0; i < 100000000; i++) {
+            // Intentional busy loop to simulate heavy processing
+          }
         }
-      }
-      heavyComputation();
+        heavyComputation();
+      });
     </script>
     <!-- Synchronous external script loaded without defer/async -->
-    <script src="unoptimized-script.js"></script>
+    <script src="unoptimized-script.js" defer></script>
   </head>
   <body>
     <header>
@@ -84,14 +86,15 @@
           purposes.
         </p>
         <!-- Large unoptimized image with proper alt text -->
-        <img
+        <link rel="preload" as="image" href="large-image.jpg">
+<img
           src="large-image.jpg"
           alt="Large Unoptimized Image"
           width="1200"
           height="800"
         />
         <!-- Online image with missing alt text (accessibility issue) -->
-        <img src="https://via.placeholder.com/300" />
+        <img src="https://via.placeholder.com/300" alt="Placeholder Image" />
       </section>
       <section id="forms">
         <h2>Forms</h2>
